@@ -15,7 +15,7 @@ const input = document.querySelector('.searchInput');
 // Fetching api and then printing to html
 fetch(urlAPI)
     .then(res => res.json())
-    .then(res => console.log(res.results))
+    .then(res => res.results)
     .then(displayEmployees)
     .catch(err => console.log(err))
 
@@ -85,12 +85,4 @@ gridContainerCards.addEventListener('click', e =>{
 
 modalClose.addEventListener('click', () =>{
   overlay.classList.add('hidden');
-})
-
-
-
-// filtering cards
-// function filterCards = (){
-//   const filter = input.value.toUpperCase();
-//
-// }
+});
