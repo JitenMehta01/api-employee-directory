@@ -30,6 +30,27 @@ a{
   font-weight:600;
 }
 
+.main-header-search input{
+  border-radius:5px;
+border: 1px solid gray;
+padding:5px 40px 5px 35px;
+background: url('data:image/svg+xml,<svg width="30px" height="20px" fill="grey" xmlns="http://www.w3.org/2000/svg" viewBox="0 170 900 24"><path d="M505.749 475.587l-145.6-145.6c28.203-34.837 45.184-79.104 45.184-127.317C405.333 90.926 314.41.003 202.666.003S0 90.925 0 202.669s90.923 202.667 202.667 202.667c48.213 0 92.48-16.981 127.317-45.184l145.6 145.6c4.16 4.16 9.621 6.251 15.083 6.251s10.923-2.091 15.083-6.251c8.341-8.341 8.341-21.824-.001-30.165zM202.667 362.669c-88.235 0-160-71.765-160-160s71.765-160 160-160 160 71.765 160 160-71.766 160-160 160z"></path></svg>') no-repeat;
+background-position-x: 10px;
+opacity:1;
+transition: .5s all ease-out;
+width:100%;
+}
+
+.main-header-search {
+  list-style: none;
+  width:100%;
+}
+
+.search{
+  display:flex;
+  justify-content: center;
+  padding:0 20px;
+}
 
 
 /**********************************************************************************************************************************************************************
@@ -38,7 +59,7 @@ a{
 #grid-container{
   display:grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 90px auto;
+  grid-template-rows: 10px auto;
   height:100%;
   padding:20px;
   grid-template-areas:
@@ -51,6 +72,7 @@ header{
   display: flex;
   justify-content: center;
   align-items: center;
+  height:100px;
 }
 
 .cards{
@@ -68,6 +90,13 @@ header{
   align-items: center;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+}
+
+.card:hover{
+  -webkit-box-shadow: 4px 4px 22px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 22px 2px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 22px 2px rgba(0,0,0,0.75);
 }
 
 .card img{
@@ -99,7 +128,7 @@ border-radius: 75px;
 /**********************************************************************************************************************************************************************
 ************************************************************************ OVERLAY *************************************************************************************/
 
-.overylay{
+.overlay{
   position: absolute;
   top:0;
   left:0;
@@ -109,8 +138,8 @@ border-radius: 75px;
 }
 
 .modal{
-  width:300px;
-  margin:15% auto auto;
+  width:400px;
+  margin:50% auto auto;
   position: relative;
   text-align: center;
   background: #fff;
@@ -128,6 +157,23 @@ border-radius: 75px;
 
 .hidden{
   display:none;
+}
+
+.avatar{
+  border-radius: 60px;
+  width:120px;
+}
+
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height:300px;
+}
+
+.modal-content > .text-container{
+  align-items: center;
 }
 
 /**********************************************************************************************************************************************************************
@@ -162,6 +208,11 @@ border-radius: 75px;
   .text-container{
     align-items: flex-start;
   }
+
+  .modal{
+      margin:25% auto auto;
+  }
+
 }
 
 
@@ -170,6 +221,9 @@ border-radius: 75px;
 @media only screen and (min-width:980px){
   .card{
     flex:400px 0.1;
+  }
+  .modal{
+      margin:15% auto auto;
   }
 
 
