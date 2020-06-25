@@ -16,7 +16,9 @@ const input = document.querySelector('.searchInput');
 fetch(urlAPI)
     .then(res => res.json())
     .then(res => res.results)
+    .then(filter)
     .then(displayEmployees)
+
     .catch(err => console.log(err))
 
 function displayEmployees(employeeData) {
@@ -61,9 +63,10 @@ function displayModel (index) {
     <h2 class = 'name'>${name.first} ${name.last}</h2>
     <p class = 'email'>${email}</p>
     <p class = 'address'>${city}</p>
-    <hr />
+
+    <hr style='width:0'>
     <p>${phone}</p>
-    <p class ='address'> ${street.name}, ${state} ${postcode} </p>
+    <p class ='address'> ${street.number} ${street.name}, ${state}, ${postcode} </p>
     <p>Birthday : ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
     </div>
   `;
@@ -86,3 +89,13 @@ gridContainerCards.addEventListener('click', e =>{
 modalClose.addEventListener('click', () =>{
   overlay.classList.add('hidden');
 });
+
+// filter function
+function filter (response) {
+  if(response.ok){
+  for(let i = 0; i < cards.length; i++){
+    let employeeName = cards[i].querySelector('.text-container h2').innerHTML;
+    console.log(employeeName);
+  }
+}
+}
