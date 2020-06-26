@@ -16,9 +16,8 @@ const input = document.querySelector('.searchInput');
 fetch(urlAPI)
     .then(res => res.json())
     .then(res => res.results)
-    .then(filter)
     .then(displayEmployees)
-
+    .then(filter)
     .catch(err => console.log(err))
 
 function displayEmployees(employeeData) {
@@ -91,11 +90,20 @@ modalClose.addEventListener('click', () =>{
 });
 
 // filter function
-function filter (response) {
-  if(response.ok){
-  for(let i = 0; i < cards.length; i++){
-    let employeeName = cards[i].querySelector('.text-container h2').innerHTML;
-    console.log(employeeName);
-  }
-}
+
+function filter () {
+      if(employees !== []){
+        const searchBar = document.getElementById('searchInput');
+        let filter = searchBar.value.toUpperCase();
+        const cards = document.getElementsByClassName('card');
+
+        for(let i = 0; i < cards.length; i++){
+          let employeeName = cards[i].querySelector('.text-container h2').textContent.toUpperCase();
+          if (employeeName) {
+            cards[i].style.display = '';
+          } else {
+            cards[i].style.display = 'none';
+          }
+        }
+   }
 }
