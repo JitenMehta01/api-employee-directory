@@ -93,17 +93,33 @@ modalClose.addEventListener('click', () =>{
 
 function filter () {
       if(employees !== []){
-        const searchBar = document.getElementById('searchInput');
-        let filter = searchBar.value.toUpperCase();
-        const cards = document.getElementsByClassName('card');
 
-        for(let i = 0; i < cards.length; i++){
-          let employeeName = cards[i].querySelector('.text-container h2').textContent.toUpperCase();
-          if (employeeName) {
-            cards[i].style.display = '';
-          } else {
-            cards[i].style.display = 'none';
-          }
-        }
+    const searchBar = document.getElementById('searchInput');
+      // searchBar
+
+    let filter = searchBar.value.toUpperCase();
+
+      // taking the value of the searchBar and converting the string to uppercase
+
+    const cards = document.getElementsByClassName('card');
+      //retreiving all 12 employee cards
+
+
+
+    // checks if the employees array has anything inside
+
+
+    for(let i = 0; i < cards.length; i++){
+    // loops through all 12 employee cards
+
+      let employeeName = cards[i].querySelector('.text-container h2').textContent.toUpperCase();
+      // retrives the employee name
+
+      if (employeeName.toUpperCase().indexOf(filter) > -1) {
+        cards[i].style.display = '';
+      } else {
+        cards[i].style.display = 'none';
+      }
+    }
    }
 }
