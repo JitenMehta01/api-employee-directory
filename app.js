@@ -1,14 +1,20 @@
-// VARIABLES
+/********************************************************************************************************************
+VARAIBLES
+*********************************************************************************************************************/
 
-let employees = [];
+
+
+let employees = []; // employee data will added to this var via the displayEmployees function
 const urlAPI = `https://randomuser.me/api/?results=12&inc=name,%20picture,email,%20location,%20phone,%20dob%20&noinfo%20&nat=US`;
-const gridContainerCards = document.querySelector('#grid-container > .cards');
-const overlay = document.querySelector('.overlay');
+
+const gridContainerCards = document.querySelector('#grid-container > .cards'); // employee cards
+const overlay = document.querySelector('.overlay'); // generates a clickable pop up window
 const modalContainer = document.querySelector('.modal-content');
 const modalClose = document.querySelector('.modal-close');
 
-// search bar VARIABLES
-const input = document.querySelector('.searchInput');
+const input = document.querySelector('.searchInput'); // search bar to filter names
+
+// 
 
 
 
@@ -17,7 +23,6 @@ fetch(urlAPI)
     .then(res => res.json())
     .then(res => res.results)
     .then(displayEmployees)
-    .then(filter)
     .catch(err => console.log(err))
 
 function displayEmployees(employeeData) {
@@ -57,6 +62,9 @@ function displayModel (index) {
   let date = new Date(dob.date);
 
   const modalHTML = `
+  <button class = 'carousel-button carousel-button-left'>
+  <img class = 'arrow-image' src = 'img/back.svg'>
+  </button>
   <img class = 'avatar' src = '${picture.large}' />
   <div class = 'text-container'>
     <h2 class = 'name'>${name.first} ${name.last}</h2>
@@ -67,6 +75,23 @@ function displayModel (index) {
     <p>${phone}</p>
     <p class ='address'> ${street.number} ${street.name}, ${state}, ${postcode} </p>
     <p>Birthday : ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+    </div>
+    <button class = 'carousel-button carousel-button-right'>
+    <img class = 'arrow-image' src = 'img/back.svg'>
+    </button>
+    <div class = 'carousel-dots'>
+    <button class = 'carousel_dot dot-active'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
+    <button class = 'carousel_dot'></button>
     </div>
   `;
 
@@ -89,37 +114,59 @@ modalClose.addEventListener('click', () =>{
   overlay.classList.add('hidden');
 });
 
-// filter function
 
-function filter () {
-      if(employees !== []){
-
-    const searchBar = document.getElementById('searchInput');
-      // searchBar
-
-    let filter = searchBar.value.toUpperCase();
-
-      // taking the value of the searchBar and converting the string to uppercase
-
-    const cards = document.getElementsByClassName('card');
-      //retreiving all 12 employee cards
+//////////////////////////////////////////////////////////
+/// FILTER FUNCTION
+/// TWO METHODS HAVE BEEN USED.
+/// A FOR LOOP AND FOREACH LOOP
 
 
 
-    // checks if the employees array has anything inside
+const searchBar = document.getElementById('searchInput');
 
+// FOR EACH
+searchBar.addEventListener('keyup', () =>{
 
-    for(let i = 0; i < cards.length; i++){
-    // loops through all 12 employee cards
+  let employeeName = document.getElementsByClassName('cardName');
+  let input = searchBar.value.toUpperCase();
 
-      let employeeName = cards[i].querySelector('.text-container h2').textContent.toUpperCase();
-      // retrives the employee name
+  // converts htmlcollection to array
+  employeeName = Array.from(employeeName);
 
-      if (employeeName.toUpperCase().indexOf(filter) > -1) {
-        cards[i].style.display = '';
+  employeeName.forEach((employee) =>{
+      if (employee.textContent.toUpperCase().indexOf(input) > -1) {
+        employee.closest('.card').style.display = '';
       } else {
-        cards[i].style.display = 'none';
+        employee.closest('.card').style.display = 'none';
       }
-    }
-   }
+  });
+
+});
+
+
+
+// FOR LOOP
+
+// searchBar.addEventListener('keyup', () =>{
+//   let cards = document.querySelectorAll('.card');
+//   let employeeName = document.getElementsByClassName('cardName');
+//   let input = searchBar.value.toUpperCase();
+//
+//   for(let i = 0; i < employeeName.length; i++){
+//     if (employeeName[i].textContent.toUpperCase().indexOf(input) > -1) {
+//       cards[i].style.display = '';
+//     } else {
+//       cards[i].style.display = 'none';
+//     }
+//   }
+//
+// });
+
+
+// clears the search bar value on load.
+
+const clearSearchBr = () =>{
+  searchBar.value = '';
 }
+
+window.onload = clearSearchBr;
