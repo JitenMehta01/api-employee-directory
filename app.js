@@ -80,20 +80,6 @@ function displayModel (index) {
     <button class = 'carousel-button carousel-button-right'>
     <img class = 'arrow-image' src = 'img/back.svg'>
     </button>
-    <div class = 'carousel-dots'>
-    <button class = 'carousel_dot dot-active'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    <button class = 'carousel_dot'></button>
-    </div>
   `;
 
   /********************************************************************************************************************
@@ -106,12 +92,10 @@ function displayModel (index) {
   let cardPosition = employees.indexOf(employees[index]);
 
   function nextCard (){
-    displayModel(index += 1);
-  }
-
-  function prevCard (){
-    displayModel(index -= 1);
-  }
+   displayModel(cardPosition + 1);
+ }  function prevCard (){
+   displayModel(cardPosition - 1);
+ }
 
   const rightArrow = document.querySelector('.carousel-button-right');
   const leftArrow = document.querySelector('.carousel-button-left');
