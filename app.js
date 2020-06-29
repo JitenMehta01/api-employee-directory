@@ -14,7 +14,7 @@ const modalClose = document.querySelector('.modal-close');
 
 const input = document.querySelector('.searchInput'); // search bar to filter names
 
-// 
+//
 
 
 
@@ -32,6 +32,7 @@ function displayEmployees(employeeData) {
 
 // looping through each object and adding html
     employees.forEach((employee, index) => {
+
         let name = employee.name;
         let email = employee.email;
         let city = employee.location.city;
@@ -97,6 +98,33 @@ function displayModel (index) {
 
   overlay.classList.remove('hidden');
   modalContainer.innerHTML = modalHTML
+
+  let cardPosition = employees.indexOf(employees[index]);
+
+  function nextCard (){
+    cardPosition +=1;
+    displayModel();
+  }
+
+  function prevCard (){
+    cardPosition -=1;
+    displayModel();
+  }
+
+  const rightArrow = document.querySelector('.carousel-button-right');
+  const leftArrow = document.querySelector('.carousel-button-left');
+
+  rightArrow.addEventListener('click', e =>{
+    nextCard();
+    console.log(cardPosition);
+  });
+
+  leftArrow.addEventListener('click', e =>{
+    prevCard();
+    console.log(cardPosition);
+  });
+
+
 }
 
 // click event which opens a pop up
