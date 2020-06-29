@@ -14,7 +14,7 @@ const modalClose = document.querySelector('.modal-close');
 
 const input = document.querySelector('.searchInput'); // search bar to filter names
 
-//
+
 
 
 
@@ -96,19 +96,21 @@ function displayModel (index) {
     </div>
   `;
 
+  /********************************************************************************************************************
+    CARD CAROUSEL
+  *********************************************************************************************************************/
+
   overlay.classList.remove('hidden');
   modalContainer.innerHTML = modalHTML
 
   let cardPosition = employees.indexOf(employees[index]);
 
   function nextCard (){
-    cardPosition +=1;
-    displayModel();
+    displayModel(index += 1);
   }
 
   function prevCard (){
-    cardPosition -=1;
-    displayModel();
+    displayModel(index -= 1);
   }
 
   const rightArrow = document.querySelector('.carousel-button-right');
@@ -123,6 +125,10 @@ function displayModel (index) {
     prevCard();
     console.log(cardPosition);
   });
+
+  /********************************************************************************************************************
+  CARD CAROUSEL
+  *********************************************************************************************************************/
 
 
 }
